@@ -16,7 +16,7 @@ class Utility:
 
     # Compute the angle between two vectors in radians
     def computeAngleBtwVectors(v1, v2):
-        intRes = Utility.computeScalar(v1, v2) / (v1.computeModule() * v2.computeModule())
+        intRes = Utility.computeScalarBtwVectors(v1, v2) / (v1.computeModule() * v2.computeModule())
         return math.acos(intRes)
 
     # Compute the values of the stem
