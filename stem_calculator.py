@@ -37,8 +37,6 @@ def getDataJson(filename):
         data = {"stack" : _stack, "reach" : _reach, "directionAngle" : _directionAngle, "xHandlebar" : _xHandlebar, "yHandlebar" : _yHandlebar, "bearingHeight" : _bearingHeight, "stemHeight" : _stemHeight, "spacerHeight" : _spacerHeight}
         return data
 
-
-
 if __name__ == "__main__":
     print("*************************************************************************************")
     print("********************************  <Stem Calculator>  ********************************")

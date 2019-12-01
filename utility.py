@@ -38,22 +38,22 @@ class Utility:
             pFrame.toString()
 
         # Create the Point on the top of the bearing
-        xBearing = pFrame.x - math.sin(alpha) * bearingHeight
-        yBearing = pFrame.y + math.cos(alpha) * bearingHeight
+        xBearing = pFrame.x - (math.sin(alpha) * bearingHeight)
+        yBearing = pFrame.y + (math.cos(alpha) * bearingHeight)
         pBearing = Point(xBearing, yBearing, "pBearing")
         if DEBUG_MODE == 1:
             pBearing.toString()
 
         # Create the Point at the top of the spacer
-        xSpacer = pBearing.x - math.sin(alpha) * spacerHeight
-        ySpacer = pBearing.y + math.cos(alpha) * spacerHeight
+        xSpacer = pBearing.x - (math.sin(alpha) * spacerHeight)
+        ySpacer = pBearing.y + (math.cos(alpha) * spacerHeight)
         pSpacer = Point(xSpacer, ySpacer, "pSpacer")
         if DEBUG_MODE == 1:
             pSpacer.toString()
 
         # Create the Point at the middle height of the stem
-        xMiddleStem = pSpacer.x - math.sin(alpha) * stemHeight / 2
-        yMiddleStem = pSpacer.y + math.cos(alpha) * stemHeight / 2
+        xMiddleStem = pSpacer.x - (math.sin(alpha) * (stemHeight / 2))
+        yMiddleStem = pSpacer.y + (math.cos(alpha) * (stemHeight / 2))
         pMiddleStem = Point(xMiddleStem, yMiddleStem, "pMiddleStem")
         if DEBUG_MODE == 1:
             pMiddleStem.toString()
