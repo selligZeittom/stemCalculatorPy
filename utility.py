@@ -8,7 +8,7 @@ import math
 # Utility class
 # --------------------------------------------------------------
 
-DEBUG_MODE = 1
+DEBUG_MODE = 0
 
 class Utility:
 
@@ -92,9 +92,10 @@ class Utility:
             print("the length of the stem after calculation is : \t" + str(lengthStem))
 
         # Create the Stem
-        stem = Stem(lengthStem, angleStem)
+        stem = Stem(round(lengthStem, 1), round(angleStem, 1))
         if DEBUG_MODE == 1:
             stem.toString()
+        return stem
   
 
 

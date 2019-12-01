@@ -24,7 +24,6 @@ def getDataCmdLine():
 
 # Read the Json file
 def getDataJson(filename):
-    print("Reading the configuration file at : " + filename)
     with open(filename) as json_file:
         config = json.load(json_file)
         _stack = config["stack"]
@@ -42,7 +41,7 @@ def getDataJson(filename):
 
 if __name__ == "__main__":
     print("*************************************************************************************")
-    print("*********************************  Stem Calculator  *********************************")
+    print("********************************  <Stem Calculator>  ********************************")
     print("*************************************************************************************")
     print("")
 
@@ -55,7 +54,12 @@ if __name__ == "__main__":
         sys.exit()
 
     # Compute the Stem
-    Utility.computeStem(data["xHandlebar"], data["yHandlebar"], data["reach"], data["stack"], data["directionAngle"], data["bearingHeight"], data["spacerHeight"], data["stemHeight"])
-
-    
+    stem = Utility.computeStem(data["xHandlebar"], data["yHandlebar"], data["reach"], data["stack"], data["directionAngle"], data["bearingHeight"], data["spacerHeight"], data["stemHeight"])
+    print("The stem dimensions are :")
+    print("\tangle : \t" + str(stem.angle) + " [degrees]")
+    print("\tlength : \t" + str(stem.length) + " [mm]")
+    print("")
+    print("*************************************************************************************")
+    print("*******************************  </Stem Calculator >  *******************************")
+    print("*************************************************************************************")
     
