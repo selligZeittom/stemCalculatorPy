@@ -8,6 +8,8 @@ import math
 # Utility class
 # --------------------------------------------------------------
 
+DEBUG_MODE = 1
+
 class Utility:
 
     # Compute the scalar product between the two vectors
@@ -25,41 +27,74 @@ class Utility:
         # Convert the directionAngle to radians
         directionAngle = directionAngle / 180.0 * math.pi
 
+        # Get alpha, the angle to work with
+        alpha = math.pi / 2.0 - directionAngle
+        if DEBUG_MODE == 1:
+            print("alpha is : " + str(alpha * 180.0 / math.pi))
+
         # Create the point at the top of the frame
-        pFrame = Point(reach, stack)
+        pFrame = Point(reach, stack, "pFrame")
+        if DEBUG_MODE == 1:
+            pFrame.toString()
 
         # Create the Point on the top of the bearing
-        xBearing = pFrame.x - math.sin(directionAngle) * bearingHeight
-        yBearing = pFrame.y + math.cos(directionAngle) * bearingHeight
-        pBearing = Point(xBearing, yBearing)
+        xBearing = pFrame.x - math.sin(alpha) * bearingHeight
+        yBearing = pFrame.y + math.cos(alpha) * bearingHeight
+        pBearing = Point(xBearing, yBearing, "pBearing")
+        if DEBUG_MODE == 1:
+            pBearing.toString()
 
         # Create the Point at the top of the spacer
-        xSpacer = pBearing.x - math.sin(directionAngle) * spacerHeight
-        ySpacer = pBearing.y + math.cos(directionAngle) * spacerHeight
-        pSpacer = Point(xSpacer, ySpacer)
+        xSpacer = pBearing.x - math.sin(alpha) * spacerHeight
+        ySpacer = pBearing.y + math.cos(alpha) * spacerHeight
+        pSpacer = Point(xSpacer, ySpacer, "pSpacer")
+        if DEBUG_MODE == 1:
+            pSpacer.toString()
 
         # Create the Point at the middle height of the stem
-        xMiddleStem = pSpacer.x - math.sin(directionAngle) * stemHeight / 2
-        yMiddleStem = pSpacer.y + math.cos(directionAngle) * stemHeight / 2
-        pMiddleStem = Point(xMiddleStem, yMiddleStem)
+        xMiddleStem = pSpacer.x - math.sin(alpha) * stemHeight / 2
+        yMiddleStem = pSpacer.y + math.cos(alpha) * stemHeight / 2
+        pMiddleStem = Point(xMiddleStem, yMiddleStem, "pMiddleStem")
+        if DEBUG_MODE == 1:
+            pMiddleStem.toString()
 
         # Create the Point of the handlebar
-        pHandlebar = Point(xHandlebar, yHandlebar) 
+        pHandlebar = Point(xHandlebar, yHandlebar, "pHandlebar")
+        if DEBUG_MODE == 1:
+            pHandlebar.toString() 
 
         # Create the Vector between the Point of the middle height of the stem and the point of the handlebar
-        vStem = Vector(pMiddleStem, pHandlebar)
+        vStem = Vector(pMiddleStem, pHandlebar, "vStem")
+        if DEBUG_MODE == 1:
+            vStem.toString()
 
         # Create the Vector between the Point of the middle height of the stem and the Point of the top of the frame 
-        vDirection = Vector(pMiddleStem, pFrame)
+        vDirection = Vector(pMiddleStem, pFrame, "vDirection")
+        if DEBUG_MODE == 1:
+            vDirection.toString()
 
         # Compute the angle between the two Vectors
-        alpha = Utility.computeAngleBtwVectors(vStem, vDirection)
-        alpha = alpha * 180 / math.pi
-        print("the angle after calculation is : " + str(alpha))
+        beta = Utility.computeAngleBtwVectors(vStem, vDirection)
+        beta = beta * 180 / math.pi
+        if DEBUG_MODE == 1:
+            print("")
+            print("")
+            print("the angle after calculation is : \t\t" + str(beta))
+        angleStem = 180
+        if beta < 90 and beta > 0: 
+            angleStem = - (90 - beta)
+        elif beta > 90 and beta < 180:
+            angleStem = beta - 90
 
         # Compute the length of the stem
         lengthStem = vStem.computeModule()
-        print("the length of the stem after calculation is : " + str(lengthStem))
+        if DEBUG_MODE == 1:
+            print("the length of the stem after calculation is : \t" + str(lengthStem))
+
+        # Create the Stem
+        stem = Stem(lengthStem, angleStem)
+        if DEBUG_MODE == 1:
+            stem.toString()
   
 
 

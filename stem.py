@@ -7,9 +7,9 @@ class Stem:
     angle = 0.0
 
     # Constructor
-    def __init__(self, l, a):
+    def __init__(self, length, angle):
         self.length = length
-        self.angle = a
+        self.angle = angle
 
     # Print the stem
     def toString(self):
