@@ -6,6 +6,9 @@ from src.stem import Stem
 import json
 import sys
 
+# PyQt import
+from PyQt5.QtWidgets import QApplication, QLabel
+
 # Get the data manually
 def getDataCmdLine():
     # Ask for the data
