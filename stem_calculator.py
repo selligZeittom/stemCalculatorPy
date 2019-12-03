@@ -1,6 +1,6 @@
 # Import Utility, Point and Vector
-from utility import Utility
-from stem import Stem
+from src.utility import Utility
+from src.stem import Stem
 
 # Misc import
 import json
