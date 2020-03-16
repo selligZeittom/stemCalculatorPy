@@ -21,6 +21,10 @@ class Utility:
         intRes = Utility.computeScalarBtwVectors(v1, v2) / (v1.computeModule() * v2.computeModule())
         return math.acos(intRes)
 
+    # Get the vector to another vector with a certain angle
+    def computeVectorWithAngle(v1, angle):
+
+
     # Compute the values of the stem
     def computeStem(xHandlebar, yHandlebar, reach, stack, directionAngle, bearingHeight, spacerHeight, stemHeight):
 
@@ -97,6 +101,43 @@ class Utility:
             stem.toString()
         return stem
   
+    # Compute the handlebar position given a frame and a stem
+    def computeHandlebar(stemLength, stemAngle, reach, stack, directionAngle, bearingHeight, spacerHeight, stemHeight):
+        # Convert the directionAngle to radians
+        directionAngle = directionAngle / 180.0 * math.pi
 
+        # Get alpha, the angle to work with
+        alpha = math.pi / 2.0 - directionAngle
+        if DEBUG_MODE == 1:
+            print("alpha is : " + str(alpha * 180.0 / math.pi))
 
+        # Create the point at the top of the frame
+        pFrame = Point(reach, stack, "pFrame")
+        if DEBUG_MODE == 1:
+            pFrame.toString()
 
+        # Create the Point on the top of the bearing
+        xBearing = pFrame.x - (math.sin(alpha) * bearingHeight)
+        yBearing = pFrame.y + (math.cos(alpha) * bearingHeight)
+        pBearing = Point(xBearing, yBearing, "pBearing")
+        if DEBUG_MODE == 1:
+            pBearing.toString()
+
+        # Create the Point at the top of the spacer
+        xSpacer = pBearing.x - (math.sin(alpha) * spacerHeight)
+        ySpacer = pBearing.y + (math.cos(alpha) * spacerHeight)
+        pSpacer = Point(xSpacer, ySpacer, "pSpacer")
+        if DEBUG_MODE == 1:
+            pSpacer.toString()
+
+        # Create the Point at the middle height of the stem
+        xMiddleStem = pSpacer.x - (math.sin(alpha) * (stemHeight / 2))
+        yMiddleStem = pSpacer.y + (math.cos(alpha) * (stemHeight / 2))
+        pMiddleStem = Point(xMiddleStem, yMiddleStem, "pMiddleStem")
+        if DEBUG_MODE == 1:
+            pMiddleStem.toString()
+
+        # Create the vector between pMiddleStem and pFrame
+        vMiddleStemToFrame = Vector(pMiddleStem, pFrame, "vMiddleStemToFrame")
+        
+        
