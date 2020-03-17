@@ -7,7 +7,7 @@ import json
 import sys
 
 # PyQt import
-from PyQt5.QtWidgets import QApplication, QLabel
+# from PyQt5.QtWidgets import QApplication, QLabel
 
 # Get the data manually
 def getConfigFromCmdLineForStem():
@@ -66,7 +66,7 @@ if __name__ == "__main__":
     if str(sys.argv[1]) == '-c' : 
         # Json or command line input
         if len(sys.argv) == 3:
-            data = getConfigFromJsonForStem(sys.argv[1])
+            data = getConfigFromJsonForStem(sys.argv[2])
         elif len(sys.argv) == 2:
             data = getConfigFromCmdLineForStem()
         else:
@@ -81,7 +81,7 @@ if __name__ == "__main__":
     elif str(sys.argv[1]) == '-d' : 
         # Json or command line input
         if len(sys.argv) == 3:
-            data = getConfigFromJsonForHandlebar(sys.argv[1])
+            data = getConfigFromJsonForHandlebar(sys.argv[2])
         else:
             sys.exit()
         handlebar = Utility.computeHandlebar(data["stemLength"], data["stemAngle"], data["reach"], data["stack"], data["directionAngle"], data["bearingHeight"], data["spacerHeight"], data["stemHeight"])

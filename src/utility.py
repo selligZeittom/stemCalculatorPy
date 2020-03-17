@@ -23,7 +23,7 @@ class Utility:
 
     # Get the vector to another vector with a certain angle
     def computeVectorWithAngle(v1, angle):
-
+        print("todo")
 
     # Compute the values of the stem
     def computeStem(xHandlebar, yHandlebar, reach, stack, directionAngle, bearingHeight, spacerHeight, stemHeight):
